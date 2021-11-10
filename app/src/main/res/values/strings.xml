@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ShoppingSpace</string>
+    <string name="drawer_open">drawer_open</string>
+    <string name="drawer_closed">drawer_closed</string>
 </resources>
