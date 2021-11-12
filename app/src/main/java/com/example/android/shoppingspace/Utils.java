@@ -44,6 +44,10 @@ public class Utils {
                 "drink",2.30,8
         );
         allItems.add(milk);
+        GroceryItem iceCream = new GroceryItem("ice cream","Delicious","https://anycustombox.com/images/ice-cream-box-02.jpg","food",5.4,8);
+        allItems.add(iceCream);
+
+        GroceryItem soda = new GroceryItem("soda","Tasty","https://cdn.diffords.com/contrib/bws/2019/05/5cc9b8261f976.jpg","Drink",0.99,15);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(DB_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
