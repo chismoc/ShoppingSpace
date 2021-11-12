@@ -35,7 +35,7 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.itemName.setText(items.get(position).getName());
-        holder.itemPrice.setText((int) items.get(position).getPrice());
+        holder.itemPrice.setText(String.valueOf(items.get(position).getPrice()) + "$");
 
         //set image
         Glide.with(context)

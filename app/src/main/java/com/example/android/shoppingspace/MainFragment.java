@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  *
@@ -48,21 +50,6 @@ public class MainFragment extends Fragment {
    return view;
     }
 
-    private void initRecViews() {
-        newItemsAdapter = new GroceryItemAdapter(getActivity());
-        newItemsRecView.setAdapter(newItemsAdapter);
-        newItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-
-        popularItemsAdapter = new GroceryItemAdapter(getActivity());
-        popularItemsRecView.setAdapter(popularItemsAdapter);
-        popularItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-
-        suggestedItemsAdapter = new GroceryItemAdapter(getActivity());
-        suggestedItemsRecView.setAdapter(suggestedItemsAdapter);
-        suggestedItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-
-    }
-
     private void initButtomNavView() {
         bottomNavigationView.setSelectedItemId(R.id.home);
         //Add onClickListener
@@ -93,6 +80,26 @@ public class MainFragment extends Fragment {
         newItemsRecView = view.findViewById(R.id.newItemsRecView);
         popularItemsRecView = view.findViewById(R.id.popularItemsRecView);
         suggestedItemsRecView = view.findViewById(R.id.suggestedItemsRecView);
+    }
+    private void initRecViews() {
+        newItemsAdapter = new GroceryItemAdapter(getActivity());
+        newItemsRecView.setAdapter(newItemsAdapter);
+        newItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+
+        popularItemsAdapter = new GroceryItemAdapter(getActivity());
+        popularItemsRecView.setAdapter(popularItemsAdapter);
+        popularItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+
+        suggestedItemsAdapter = new GroceryItemAdapter(getActivity());
+        suggestedItemsRecView.setAdapter(suggestedItemsAdapter);
+        suggestedItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+
+        //Recieve ArrayList
+        ArrayList<GroceryItem> allItems = Utils.getAllItems(getActivity());
+        //check if ArrayList is null
+        if(null != allItems){
+            newItemsAdapter.setItems(allItems);
+        }
     }
 
 

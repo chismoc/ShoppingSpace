@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Utils {
     private static int ID = 0;
@@ -39,15 +40,19 @@ public class Utils {
         ArrayList<GroceryItem>allItems = new ArrayList<>();
 
         //add GroceryItem List
-        GroceryItem milk = new GroceryItem("milk","milk is so delicious",
-                "https://www.psdmockups.com/wp-content/uploads/2019/06/16-Tetra-Pak-Carton-Boxes-PSD-Mockup.jpg",
-                "drink",2.30,8
+        GroceryItem cake = new GroceryItem("Cake","Cake is so delicious",
+                "https://images.pexels.com/photos/2144200/pexels-photo-2144200.jpeg",
+                "food",2.30,8
         );
-        allItems.add(milk);
-        GroceryItem iceCream = new GroceryItem("ice cream","Delicious","https://anycustombox.com/images/ice-cream-box-02.jpg","food",5.4,8);
+        allItems.add(cake);
+
+        GroceryItem iceCream = new GroceryItem("ice cream","Delicious","https://images.pexels.com/photos/108370/pexels-photo-108370.jpeg","food",5.4,8);
         allItems.add(iceCream);
 
-        GroceryItem soda = new GroceryItem("soda","Tasty","https://cdn.diffords.com/contrib/bws/2019/05/5cc9b8261f976.jpg","Drink",0.99,15);
+
+
+        GroceryItem soda = new GroceryItem("Soda","Tasty","https://cdn.diffords.com/contrib/bws/2019/05/5cc9b8261f976.jpg","Drink",0.99,15);
+        allItems.add(soda);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(DB_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
