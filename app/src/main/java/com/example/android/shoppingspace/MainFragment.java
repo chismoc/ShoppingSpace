@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -21,6 +23,11 @@ public class MainFragment extends Fragment {
     //instatiate widget
     private BottomNavigationView bottomNavigationView;
 
+    //instatiate Reclerviews
+    private RecyclerView newItemsRecView, popularItemsRecView, suggestedItemsRecView;
+    //instatiate Adapters
+    private GroceryItemAdapter newItemsAdapter, popularItemsAdapter, suggestedItemsAdapter;
+
 
     public MainFragment() {
         // Required empty public constructor
@@ -35,9 +42,25 @@ public class MainFragment extends Fragment {
 
         //method to initiate Views
         initView(view);
+        initRecViews();
         //method to select home by default
         initButtomNavView();
    return view;
+    }
+
+    private void initRecViews() {
+        newItemsAdapter = new GroceryItemAdapter(getActivity());
+        newItemsRecView.setAdapter(newItemsAdapter);
+        newItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+
+        popularItemsAdapter = new GroceryItemAdapter(getActivity());
+        popularItemsRecView.setAdapter(popularItemsAdapter);
+        popularItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+
+        suggestedItemsAdapter = new GroceryItemAdapter(getActivity());
+        suggestedItemsRecView.setAdapter(suggestedItemsAdapter);
+        suggestedItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+
     }
 
     private void initButtomNavView() {
@@ -67,8 +90,9 @@ public class MainFragment extends Fragment {
 
     private void initView(View view) {
         bottomNavigationView = view.findViewById(R.id.bottomNavView);
-
-
+        newItemsRecView = view.findViewById(R.id.newItemsRecView);
+        popularItemsRecView = view.findViewById(R.id.popularItemsRecView);
+        suggestedItemsRecView = view.findViewById(R.id.suggestedItemsRecView);
     }
 
 
