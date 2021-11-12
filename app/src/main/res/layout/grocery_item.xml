@@ -15,12 +15,13 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/itemImage_img"
             android:layout_marginBottom="20dp"
             android:src="@mipmap/ic_launcher_round"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/price"
+            android:id="@+id/itemPrice_textView"
             android:text="Price"
             android:layout_alignParentEnd="true"
             android:textColor="#ffff"
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:id="@+id/itemName_textView"
             android:text="Name"/>
     </RelativeLayout>
 
