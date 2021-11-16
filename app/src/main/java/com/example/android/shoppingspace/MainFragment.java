@@ -87,7 +87,6 @@ public class MainFragment extends Fragment {
         newItemsAdapter = new GroceryItemAdapter(getActivity());
         newItemsRecView.setAdapter(newItemsAdapter);
         newItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-
         popularItemsAdapter = new GroceryItemAdapter(getActivity());
         popularItemsRecView.setAdapter(popularItemsAdapter);
         popularItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
