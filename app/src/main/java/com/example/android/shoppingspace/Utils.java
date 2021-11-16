@@ -47,11 +47,15 @@ public class Utils {
         allItems.add(cake);
 
         GroceryItem iceCream = new GroceryItem("ice cream","Delicious","https://images.pexels.com/photos/108370/pexels-photo-108370.jpeg","food",5.4,8);
+       iceCream.setPopularityPoint(10);
+       iceCream.setUserPoint(7);
         allItems.add(iceCream);
 
 
 
         GroceryItem soda = new GroceryItem("Soda","Tasty","https://cdn.diffords.com/contrib/bws/2019/05/5cc9b8261f976.jpg","Drink",0.99,15);
+        soda.setPopularityPoint(5);
+        soda.setUserPoint(15);
         allItems.add(soda);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(DB_NAME, Context.MODE_PRIVATE);

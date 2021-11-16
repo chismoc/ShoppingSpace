@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -94,13 +96,60 @@ public class MainFragment extends Fragment {
         suggestedItemsRecView.setAdapter(suggestedItemsAdapter);
         suggestedItemsRecView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
 
-        //Recieve ArrayList
-        ArrayList<GroceryItem> allItems = Utils.getAllItems(getActivity());
+        //Recieve ArrayList for newItems
+        ArrayList<GroceryItem> newItems = Utils.getAllItems(getActivity());
         //check if ArrayList is null
-        if(null != allItems){
-            newItemsAdapter.setItems(allItems);
+        if(null != newItems){
+            //Create comparator Inteface to compare items in array and sort in descending order using itemId
+            Comparator<GroceryItem> newItemsComparator = new Comparator<GroceryItem>() {
+                @Override
+                public int compare(GroceryItem o1, GroceryItem o2) {
+                    //compare Id if Id o1 < o2 returm -1 , if o1>02 return 1, if o1== 02 return 0
+                    return  o1.getId() - o2.getId();
+                }
+            };
+            Comparator<GroceryItem> reverseComparator = Collections.reverseOrder(newItemsComparator);
+            Collections.sort(newItems, reverseComparator);
+
+            //pass item to newitemAdapter
+            newItemsAdapter.setItems(newItems);
         }
+
+        //Recieve ArrayList for popularItems
+        ArrayList<GroceryItem> popularItems = Utils.getAllItems(getActivity());
+        //check if ArrayList is null
+        if(null != popularItems){
+            //Create comparator Inteface to compare items in array and sort in descending order using itemId
+            Comparator<GroceryItem> popularItemsComparator = new Comparator<GroceryItem>() {
+                @Override
+                public int compare(GroceryItem o1, GroceryItem o2) {
+                    //compare Id if Id o1 < o2 returm -1 , if o1>02 return 1, if o1== 02 return 0
+                    return  o1.getPopularityPoint() - o2.getPopularityPoint();
+                }
+            };
+            Collections.sort(popularItems, Collections.reverseOrder(popularItemsComparator));
+
+            //pass popularItem to newitemAdapter
+            popularItemsAdapter.setItems(popularItems);
+        }
+        //Recieve ArrayList for suggestedItems
+        ArrayList<GroceryItem> suggestedItems = Utils.getAllItems(getActivity());
+        //check if ArrayList is null
+        if(null != suggestedItems){
+            //Create comparator Inteface to compare items in array and sort in descending order using itemId
+            Comparator<GroceryItem> suggestedItemsComparator = new Comparator<GroceryItem>() {
+                @Override
+                public int compare(GroceryItem o1, GroceryItem o2) {
+                    //compare Id if Id o1 < o2 returm -1 , if o1>02 return 1, if o1== 02 return 0
+                    return  o1.getUserPoint() - o2.getUserPoint();
+                }
+            };
+            Collections.sort(suggestedItems, Collections.reverseOrder(suggestedItemsComparator));
+
+            //pass popularItem to newitemAdapter
+            suggestedItemsAdapter.setItems(suggestedItems);
+        }
+
+
     }
-
-
 }
