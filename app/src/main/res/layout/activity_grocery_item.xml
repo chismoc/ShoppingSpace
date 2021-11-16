@@ -7,7 +7,7 @@
     tools:context=".GroceryItemActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolBar"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/design_default_color_primary"
@@ -17,7 +17,7 @@
         android:id="@+id/addToCart_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolBar"
+        android:layout_below="@id/toolbar"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
@@ -82,17 +82,17 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/firstFilledStar"
+                        android:id="@+id/firstFilledStar_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_filedStar"
+                        android:src="@drawable/ic_filledstar"
                         android:visibility="gone" />
 
                     <ImageView
-                        android:id="@+id/firstEmptyStar"
+                        android:id="@+id/firstEmptyStar_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_emptyStar" />
+                        android:src="@drawable/ic_emptystar" />
 
                 </RelativeLayout>
 
@@ -103,17 +103,17 @@
                     android:layout_toEndOf="@id/firstStarRelLayout">
 
                     <ImageView
-                        android:id="@+id/secondFilledStar"
+                        android:id="@+id/secondFilledStar_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_filedStar"
+                        android:src="@drawable/ic_filledstar"
                         android:visibility="gone" />
 
                     <ImageView
-                        android:id="@+id/secondEmptyStar"
+                        android:id="@+id/secondEmptyStar_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_emptyStar" />
+                        android:src="@drawable/ic_emptystar" />
 
                 </RelativeLayout>
 
@@ -124,17 +124,17 @@
                     android:layout_toEndOf="@id/secondStarRelLayout">
 
                     <ImageView
-                        android:id="@+id/thirdFilledStar"
+                        android:id="@+id/thirdFilledStar_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_filedStar"
+                        android:src="@drawable/ic_filledstar"
                         android:visibility="gone" />
 
                     <ImageView
-                        android:id="@+id/thirdEmptyStar"
+                        android:id="@+id/thirdEmptyStar_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_emptyStar" />
+                        android:src="@drawable/ic_emptystar" />
 
                 </RelativeLayout>
             </RelativeLayout>
@@ -171,9 +171,11 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/reviewRecView"
+                    android:id="@+id/reviewsRecView"
                     android:layout_below="@id/reviews_textView"
-                    android:layout_marginTop="8dp"></androidx.recyclerview.widget.RecyclerView>
+                    android:layout_marginTop="8dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
 
             </RelativeLayout>
         </RelativeLayout>

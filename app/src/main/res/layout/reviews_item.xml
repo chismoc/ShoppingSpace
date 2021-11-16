@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userName_textView"
+        android:textSize="16sp"
+        android:text="User Name"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/review_TextView"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:layout_below="@id/userName_textView"
+        android:text="review Text" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date_textView"
+        android:textSize="16sp"
+        android:layout_below="@id/review_TextView"
+        android:layout_alignParentEnd="true"
+        android:text="12 March 2020"/>
+
+</RelativeLayout>
