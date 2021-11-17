@@ -71,6 +71,32 @@ public class Utils {
                 groceryListType);
         return allItems;
     }
+    //method to recieve item Id and rating
+    public static void changeRate(Context context, int itemId, int newRate){
+        //initialize shared preference
+        SharedPreferences sharedPreferences = context.getSharedPreferences(DB_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        //Recieve ArrayList of items
+        ArrayList<GroceryItem> allItems = gson.fromJson(sharedPreferences.getString(ALL_ITEMS_KEY, null), groceryListType);
+
+        //check if Arraylist is null
+        if(null != allItems) {
+            ArrayList<GroceryItem> newItems = new ArrayList<>();
+            for (GroceryItem item : allItems) {
+                if (item.getId() == itemId) {
+                    item.setRate(newRate);
+                    newItems.add(item);
+                } else {
+                    newItems.add(item);
+                }
+            }
+            //remove items fro ArrayList
+            editor.remove(ALL_ITEMS_KEY);
+            editor.putString(ALL_ITEMS_KEY, gson.toJson(newItems));
+            editor.commit();
+        }
+    }
     public static int getID() {
         ID++;
         return ID;

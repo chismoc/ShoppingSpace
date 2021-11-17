@@ -21,7 +21,7 @@ public class GroceryItemActivity extends AppCompatActivity {
     public static final String GROCERY_ITEM_KEY = "incoming_item";
     //initialise widgets
     private RecyclerView reviewsRecView;
-    private TextView name_textView, price_textView, description_textView,addReview_textView;
+    private TextView name_textView, price_textView, description_textView, addReview_textView;
     private ImageView itemImage_img, firstEmptyStar_img, secondEmptyStar_img, thirdEmptyStar_img,
             firstFilledStar_img, secondFilledStar_img, thirdFilledStar_img;
     private Button addToCart_btn;
@@ -38,11 +38,11 @@ public class GroceryItemActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
-        if(null != intent){
+        if (null != intent) {
             //recieve incoming GroceryItem
             incomingItem = intent.getParcelableExtra(GROCERY_ITEM_KEY);
             //check if incomingItem is not null
-            if(null != incomingItem){
+            if (null != incomingItem) {
                 name_textView.setText(incomingItem.getName());
                 description_textView.setText(incomingItem.getDescription());
                 price_textView.setText(String.valueOf(incomingItem.getPrice()) + " $");
@@ -55,8 +55,8 @@ public class GroceryItemActivity extends AppCompatActivity {
                 ArrayList<Review> reviews = incomingItem.getReviews();
 
                 //check if reviews is not null
-                if(null != reviews){
-                    if(reviews.size() > 0){
+                if (null != reviews) {
+                    if (reviews.size() > 0) {
 
                         ReviewsAdapter adapter = new ReviewsAdapter();
                         reviewsRecView.setAdapter(adapter);
@@ -77,9 +77,84 @@ public class GroceryItemActivity extends AppCompatActivity {
                         //TODO show a dialog
                     }
                 });
+
+                //method to handle product Rating
+
+                handleRating();
             }
 
         }
+    }
+
+    private void handleRating() {
+        switch (incomingItem.getRate()) {
+            case 0:
+                firstEmptyStar_img.setVisibility(View.VISIBLE);
+                firstFilledStar_img.setVisibility(View.GONE);
+                secondEmptyStar_img.setVisibility(View.VISIBLE);
+                secondFilledStar_img.setVisibility(View.GONE);
+                thirdEmptyStar_img.setVisibility(View.VISIBLE);
+                thirdFilledStar_img.setVisibility(View.GONE);
+                break;
+            case 1:
+                firstEmptyStar_img.setVisibility(View.GONE);
+                firstFilledStar_img.setVisibility(View.VISIBLE);
+                secondEmptyStar_img.setVisibility(View.VISIBLE);
+                secondFilledStar_img.setVisibility(View.GONE);
+                thirdEmptyStar_img.setVisibility(View.VISIBLE);
+                thirdFilledStar_img.setVisibility(View.GONE);
+                break;
+            case 2:
+                firstEmptyStar_img.setVisibility(View.GONE);
+                firstFilledStar_img.setVisibility(View.VISIBLE);
+                secondEmptyStar_img.setVisibility(View.GONE);
+                secondFilledStar_img.setVisibility(View.VISIBLE);
+                thirdEmptyStar_img.setVisibility(View.VISIBLE);
+                thirdFilledStar_img.setVisibility(View.GONE);
+                break;
+            case 3:
+                firstEmptyStar_img.setVisibility(View.GONE);
+                firstFilledStar_img.setVisibility(View.VISIBLE);
+                secondEmptyStar_img.setVisibility(View.GONE);
+                secondFilledStar_img.setVisibility(View.VISIBLE);
+                thirdEmptyStar_img.setVisibility(View.GONE);
+                thirdFilledStar_img.setVisibility(View.VISIBLE);
+                break;
+            default:
+                break;
+
+        }
+        firstStarRelLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(incomingItem.getRate() !=1){
+                    Utils.changeRate(GroceryItemActivity.this, incomingItem.getId(),1);
+                    incomingItem.setRate(1);
+                    handleRating();
+                }
+            }
+        });
+
+        secondStarRelLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(incomingItem.getRate() !=2){
+                    Utils.changeRate(GroceryItemActivity.this, incomingItem.getId(),2);
+                    incomingItem.setRate(2);
+                    handleRating();
+                }
+            }
+        });
+        thirdStarRelLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(incomingItem.getRate() !=3){
+                    Utils.changeRate(GroceryItemActivity.this, incomingItem.getId(),3);
+                    incomingItem.setRate(3);
+                    handleRating();
+                }
+            }
+        });
     }
 
     private void initViews() {

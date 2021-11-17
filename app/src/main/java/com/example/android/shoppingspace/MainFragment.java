@@ -46,10 +46,16 @@ public class MainFragment extends Fragment {
 
         //method to initiate Views
         initView(view);
-        initRecViews();
+
         //method to select home by default
         initButtomNavView();
    return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initRecViews();
     }
 
     private void initButtomNavView() {

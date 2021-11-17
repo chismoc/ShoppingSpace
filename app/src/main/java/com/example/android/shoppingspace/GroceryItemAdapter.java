@@ -2,6 +2,7 @@ package com.example.android.shoppingspace;
 
 import static com.example.android.shoppingspace.GroceryItemActivity.GROCERY_ITEM_KEY;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -37,7 +38,7 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.itemName.setText(items.get(position).getName());
         holder.itemPrice.setText(String.valueOf(items.get(position).getPrice()) + "$");
 
