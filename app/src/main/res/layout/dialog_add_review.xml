@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="30dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/description_textView"
+            android:textSize="16sp"
+            android:text="Add Your Review For"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemName_textView"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/description_textView"
+            android:text="Item Name"/>
+
+    </RelativeLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/userName_editView"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:hint="Enter Your Name"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/review_editView"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:textSize="16sp"
+        android:hint="Your Review"
+        android:lines="5"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/warning_textView"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="warning"
+        android:textColor="#D32F2F"
+        android:visibility="gone"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addReview_btn"
+        android:layout_gravity="center"
+        android:text="Add Review"
+        android:layout_marginTop="10dp"
+        android:padding="16dp"/>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
