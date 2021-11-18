@@ -101,6 +101,44 @@ public class Utils {
         ID++;
         return ID;
     }
+    public static void addReviews(Context context, Review review){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(DB_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        ArrayList<GroceryItem> allItems = getAllItems(context);
+        if(null != allItems){
+            ArrayList<GroceryItem> newItems = new ArrayList<>();
+            for(GroceryItem item : allItems){
+                if(item.getId() == review.getGroceryItemId()){
+                    ArrayList<Review> reviews = item.getReviews();
+                    reviews.add(review);
+                    item.setReviews(reviews);
+                    newItems.add(item);
+                }else{
+                    newItems.add(item);
+                }
+            }
+            //remove items from Arraylist
+            editor.remove(ALL_ITEMS_KEY);
+            editor.putString(ALL_ITEMS_KEY, gson.toJson(newItems));
+            editor.commit();
+        }
+    }
+    //method to get reviews
+    public static ArrayList<Review> getReviewsById(Context context, int itemId){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(DB_NAME,Context.MODE_PRIVATE);
+
+        ArrayList<GroceryItem> allItems = getAllItems(context);
+        if(null != allItems){
+            for(GroceryItem item : allItems){
+                if(item.getId() == itemId){
+                    ArrayList<Review> reviews = item.getReviews();
+                    return reviews;
+                }
+            }
+        }
+        return null;
+
+    }
 
  }
 

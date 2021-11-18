@@ -158,12 +158,17 @@
                     android:layout_height="wrap_content"
                     android:text="Reviews"
                     android:textStyle="bold"
+                    android:textSize="20sp"
                     android:layout_marginStart="8dp"
                     android:id="@+id/reviews_textView"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add Reviews"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:padding="8dp"
+                    android:background="@color/design_default_color_primary"
                     android:layout_toEndOf="@id/reviews_textView"
                     android:textStyle="italic"
                     android:id="@+id/addReview_textView"

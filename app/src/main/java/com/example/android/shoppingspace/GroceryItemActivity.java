@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,7 +19,10 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 
-public class GroceryItemActivity extends AppCompatActivity {
+public class GroceryItemActivity extends AppCompatActivity implements AddReviewDialog.AddReview {
+
+
+private ReviewsAdapter adapter;
     public static final String GROCERY_ITEM_KEY = "incoming_item";
     //initialise widgets
     private RecyclerView reviewsRecView;
@@ -30,6 +35,19 @@ public class GroceryItemActivity extends AppCompatActivity {
     private MaterialToolbar toolbar;
 
     @Override
+    public void onAddReviewResult(Review review) {
+        Utils.addReviews(this,review);
+
+        //get Reviews
+        ArrayList<Review> reviews = Utils.getReviewsById(this,review.getGroceryItemId());
+
+        //check if null
+        if(null != reviews){
+            adapter.setReviews(reviews);
+        }
+     }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grocery_item);
@@ -37,6 +55,8 @@ public class GroceryItemActivity extends AppCompatActivity {
         initViews();
 
         setSupportActionBar(toolbar);
+        adapter = new ReviewsAdapter();
+
         Intent intent = getIntent();
         if (null != intent) {
             //recieve incoming GroceryItem
@@ -52,16 +72,14 @@ public class GroceryItemActivity extends AppCompatActivity {
                         .load(incomingItem.getImageUrl())
                         .into(itemImage_img);
 
-                ArrayList<Review> reviews = incomingItem.getReviews();
-
+                ArrayList<Review> reviews = Utils.getReviewsById(this,incomingItem.getId());
+                reviewsRecView.setAdapter(adapter);
+                reviewsRecView.setLayoutManager(new LinearLayoutManager(this));
                 //check if reviews is not null
                 if (null != reviews) {
                     if (reviews.size() > 0) {
 
-                        ReviewsAdapter adapter = new ReviewsAdapter();
-                        reviewsRecView.setAdapter(adapter);
-                        reviewsRecView.setLayoutManager(new LinearLayoutManager(this));
-                        adapter.setReviews(reviews);
+                      adapter.setReviews(reviews);
                     }
                 }
                 addToCart_btn.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +93,11 @@ public class GroceryItemActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         //TODO show a dialog
+                        AddReviewDialog dialog = new AddReviewDialog();
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable(GROCERY_ITEM_KEY, incomingItem);
+                        dialog.setArguments(bundle);
+                        dialog.show(getSupportFragmentManager(), "Add Review");
                     }
                 });
 
@@ -179,4 +202,6 @@ public class GroceryItemActivity extends AppCompatActivity {
 
 
     }
+
+
 }
