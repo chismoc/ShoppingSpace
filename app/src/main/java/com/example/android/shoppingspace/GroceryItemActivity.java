@@ -86,6 +86,8 @@ private ReviewsAdapter adapter;
                     @Override
                     public void onClick(View v) {
                         //TODO add item to cart
+                        Utils.addItemToCart(GroceryItemActivity.this, incomingItem);
+
                     }
                 });
 
