@@ -44,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="First Category"
                 android:id="@+id/firstCart_textView"
+                android:visibility="gone"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -51,6 +52,7 @@
                 android:text="Second Category"
                 android:id="@+id/secondCart_textView"
                 android:layout_marginStart="10dp"
+                android:visibility="gone"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -58,6 +60,7 @@
                 android:text="Third Category"
                 android:id="@+id/thirdCart_textView"
                 android:layout_marginStart="10dp"
+                android:visibility="gone"
                 />
 
         </LinearLayout>
@@ -90,5 +93,6 @@
         app:menu="@menu/bottom_navigation_menu">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 </RelativeLayout>

@@ -191,6 +191,65 @@ public class Utils {
         ArrayList<GroceryItem> cartItems = gson.fromJson(sharedPreferences.getString(CART_ITEM_KEY, null), groceryListType);
         return cartItems;
     }
+    //searchForItems method
+    public static ArrayList<GroceryItem> searchForItems(Context context, String text) {
+        //Get ArrayList of all items
+        ArrayList<GroceryItem> allItems = getAllItems(context);
+        if (null != allItems) {
+            ArrayList<GroceryItem> items = new ArrayList<>();
+            for (GroceryItem item : allItems) {
+                if (item.getName().equalsIgnoreCase(text)) {
+                    items.add(item);
+                }
+                String[] names = item.getName().split(" ");
+                for (int i = 0; i < names.length; i++) {
+                    if (text.equalsIgnoreCase(names[i])) {
+                        boolean doesExist = false;
+
+                        for (GroceryItem j : items) {
+                            if (j.getId() == item.getId()) {
+                                doesExist = true;
+                            }
+                        }
+                        if (!doesExist) {
+                            items.add(item);
+                        }
+                    }
+                }
+            }
+            return items;
+        }
+        return null;
+    }
+    // get all categories
+    public static ArrayList<String>getCategories(Context context){
+        ArrayList<GroceryItem> allItems = getAllItems(context);
+        if(null != allItems){
+            ArrayList<String> categories = new ArrayList<>();
+            for(GroceryItem item : allItems){
+                boolean doesExist = false;
+                for(String s: categories){
+                    if(item.getCategory().equals(s)){
+                        doesExist = true;
+                    }
+                }if(!doesExist){
+                    categories.add(item.getCategory());
+                }
+            }return categories;
+        }return null;
+    }
+    public static ArrayList<GroceryItem> getItemByCategory(Context context, String category){
+        ArrayList<GroceryItem> allItems = getAllItems(context);
+        if(null != allItems){
+            ArrayList<GroceryItem> items = new ArrayList<>();
+            for(GroceryItem item : allItems){
+                if(item.getCategory().equals(category)){
+                    items.add(item);
+                }
+            }return items;
+        }
+        return null;
+    }
 }
 
 

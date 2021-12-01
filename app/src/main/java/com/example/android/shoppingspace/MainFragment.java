@@ -1,5 +1,6 @@
 package com.example.android.shoppingspace;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -48,7 +49,7 @@ public class MainFragment extends Fragment {
         initView(view);
 
         //method to select home by default
-        initButtomNavView();
+        initBottomNavView();
    return view;
     }
 
@@ -58,18 +59,22 @@ public class MainFragment extends Fragment {
         initRecViews();
             }
 
-    private void initButtomNavView() {
+    private void initBottomNavView() {
         bottomNavigationView.setSelectedItemId(R.id.home);
         //Add onClickListener
-      bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+      bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
           @Override
-          public void onNavigationItemReselected(@NonNull MenuItem item) {
+          public boolean onNavigationItemSelected(@NonNull MenuItem item) {
               switch (item.getItemId()){
                   case R.id.home:
                       Toast.makeText(getActivity(), "home selected", Toast.LENGTH_SHORT).show();
                       break;
                   case R.id.search:
-                      Toast.makeText(getActivity(), "search selected", Toast.LENGTH_SHORT).show();
+                      Intent intent = new Intent(getActivity(), SearchActivity.class);
+                      intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                      startActivity(intent);
+
+                      //set Adapter
                       break;
 
                   case R.id.cart:
@@ -78,7 +83,7 @@ public class MainFragment extends Fragment {
                   default:
                       break;
               }
-
+return false;
           }
       });
     }

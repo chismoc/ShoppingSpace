@@ -1,11 +1,15 @@
 package com.example.android.shoppingspace;
 
+import static com.example.android.shoppingspace.AllCategoriesDialog.ALL_CATEGORIES;
+import static com.example.android.shoppingspace.AllCategoriesDialog.CALLING_ACTIVITY;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.cart:
                         Toast.makeText(MainActivity.this, "Cart Selected", Toast.LENGTH_SHORT).show();
                break;
+                    case R.id.categories:
+                        AllCategoriesDialog dialog = new AllCategoriesDialog();
+                        Bundle bundle = new Bundle();
+                        bundle.putStringArrayList(ALL_CATEGORIES, Utils.getCategories(MainActivity.this));
+                        bundle.putString(CALLING_ACTIVITY, "main_activity");
+                        dialog.setArguments(bundle);
+                        dialog.show(getSupportFragmentManager(), "All categories dialog");
+
                     default:
                         break;
                 }
