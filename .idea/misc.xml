@@ -4,11 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/applicationInAndroid/ShoppingSpace/app/src/main/res/drawable-anydpi/ic_emptyStar.xml" value="0.2203125" />
+        <entry key="..\:/applicationInAndroid/ShoppingSpace/app/src/main/res/layout/activity_cart.xml" value="0.20416666666666666" />
         <entry key="..\:/applicationInAndroid/ShoppingSpace/app/src/main/res/layout/activity_grocery_item.xml" value="0.20416666666666666" />
         <entry key="..\:/applicationInAndroid/ShoppingSpace/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/applicationInAndroid/ShoppingSpace/app/src/main/res/layout/activity_search.xml" value="0.1" />
+        <entry key="..\:/applicationInAndroid/ShoppingSpace/app/src/main/res/layout/cart_item.xml" value="0.22" />
         <entry key="..\:/applicationInAndroid/ShoppingSpace/app/src/main/res/layout/dialog_add_review.xml" value="0.20416666666666666" />
         <entry key="..\:/applicationInAndroid/ShoppingSpace/app/src/main/res/layout/dialog_all_categories.xml" value="0.20416666666666666" />
+        <entry key="..\:/applicationInAndroid/ShoppingSpace/app/src/main/res/layout/fragment_first_cart.xml" value="0.22" />
         <entry key="..\:/applicationInAndroid/ShoppingSpace/app/src/main/res/layout/fragment_main.xml" value="0.19010416666666666" />
         <entry key="..\:/applicationInAndroid/ShoppingSpace/app/src/main/res/layout/grocery_item.xml" value="0.20416666666666666" />
         <entry key="..\:/applicationInAndroid/ShoppingSpace/app/src/main/res/layout/navigation_drawer_header.xml" value="0.20416666666666666" />

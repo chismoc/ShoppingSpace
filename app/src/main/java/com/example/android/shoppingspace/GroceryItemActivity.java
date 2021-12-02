@@ -85,8 +85,11 @@ private ReviewsAdapter adapter;
                 addToCart_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO add item to cart
+
                         Utils.addItemToCart(GroceryItemActivity.this, incomingItem);
+                        Intent cartIntent = new Intent(GroceryItemActivity.this, CartActivity.class);
+                        cartIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(cartIntent);
 
                     }
                 });

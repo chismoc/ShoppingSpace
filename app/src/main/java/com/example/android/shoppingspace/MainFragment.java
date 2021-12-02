@@ -78,8 +78,10 @@ public class MainFragment extends Fragment {
                       break;
 
                   case R.id.cart:
-                      Toast.makeText(getActivity(), "cart selected", Toast.LENGTH_SHORT).show();
-                      break;
+                   Intent cartIntent = new Intent(getActivity(), CartActivity.class);
+                   cartIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                   startActivity(cartIntent);
+                   break;
                   default:
                       break;
               }
