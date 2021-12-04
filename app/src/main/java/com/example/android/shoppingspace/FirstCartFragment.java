@@ -3,6 +3,7 @@ package com.example.android.shoppingspace;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,6 +57,15 @@ public class FirstCartFragment extends Fragment implements CartAdapter.DeleteIte
             noItems_textView.setVisibility(View.VISIBLE);
             itemsRelLayout.setVisibility(View.GONE);
         }
+        //onClickListener for nextButton to open SecongCartFragment for customer details
+        next_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.container, new SecondCartFragment());
+                transaction.commit();
+            }
+        });
 
         return view;
     }

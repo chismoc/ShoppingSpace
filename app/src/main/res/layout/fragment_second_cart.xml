@@ -15,13 +15,14 @@
        android:textSize="18sp"
        android:textStyle="bold"
        />
+
     <EditText
+        android:id="@+id/address_editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/address_textView"
         android:layout_marginTop="8dp"
-        android:hint="Address"
-        android:id="@+id/address_editText"/>
+        android:hint="Address" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -100,6 +101,7 @@
       android:layout_height="wrap_content"
       android:layout_above="@id/linearLayout_btn"
       android:layout_centerHorizontal="true"
+      android:id="@+id/warning_textView"
       android:layout_marginBottom="20dp"
       android:text="Warning"
       android:textColor="#D32F2F"

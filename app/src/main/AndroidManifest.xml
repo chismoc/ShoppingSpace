@@ -13,6 +13,7 @@
         android:theme="@style/Theme.ShoppingSpace">
         <activity
             android:name=".CartActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize"
             android:exported="true" />
         <activity
             android:name=".SearchActivity"

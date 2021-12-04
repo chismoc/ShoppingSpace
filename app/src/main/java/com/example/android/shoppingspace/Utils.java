@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Utils {
     private static int ID = 0;
+    //Order key
+    private static int ORDER_ID = 0;
     //Cart item key
     private static String CART_ITEM_KEY = "cart_items";
 
@@ -116,7 +118,14 @@ public class Utils {
             editor.commit();
         }
     }
+    //Getter for OrderID
 
+    public static int getOrderId() {
+        ORDER_ID++;
+        return ORDER_ID;
+    }
+
+    //Getter for ID
     public static int getID() {
         ID++;
         return ID;
