@@ -56,6 +56,8 @@ public class PaymentResultFragment extends Fragment {
                         //check for item and increase popularity by 1 point
                         for(GroceryItem item: order.getItems()){
                             Utils.increasePopularityPoint(getActivity(), item, 1);
+                            //add 4 points when user purchase item
+                            Utils.changeUserPoints(getActivity(),item,4);
                         }
                     }else {
 

@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +24,24 @@ import java.util.ArrayList;
 
 public class GroceryItemActivity extends AppCompatActivity implements AddReviewDialog.AddReview {
 
+private static final String TAG = "GroceryItemActivity";
+private boolean isBound;
+private TrackUserTime mService;
 
+private ServiceConnection connection = new ServiceConnection() {
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        TrackUserTime.LocalBinder binder =(TrackUserTime.LocalBinder) service;
+        mService = binder.getService();
+        isBound = true;
+        mService.setItem(incomingItem);
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+isBound = false;
+    }
+};
 private ReviewsAdapter adapter;
     public static final String GROCERY_ITEM_KEY = "incoming_item";
     //initialise widgets
@@ -37,6 +57,8 @@ private ReviewsAdapter adapter;
     @Override
     public void onAddReviewResult(Review review) {
         Utils.addReviews(this,review);
+        //Add 3 points if user add review
+        Utils.changeUserPoints(this,incomingItem,3);
 
         //get Reviews
         ArrayList<Review> reviews = Utils.getReviewsById(this,review.getGroceryItemId());
@@ -63,6 +85,7 @@ private ReviewsAdapter adapter;
             incomingItem = intent.getParcelableExtra(GROCERY_ITEM_KEY);
             //check if incomingItem is not null
             if (null != incomingItem) {
+                Utils.changeUserPoints(this, incomingItem, 1);
                 name_textView.setText(incomingItem.getName());
                 description_textView.setText(incomingItem.getDescription());
                 price_textView.setText(String.valueOf(incomingItem.getPrice()) + " $");
@@ -156,7 +179,10 @@ private ReviewsAdapter adapter;
             @Override
             public void onClick(View v) {
                 if(incomingItem.getRate() !=1){
+                    //change user rating
                     Utils.changeRate(GroceryItemActivity.this, incomingItem.getId(),1);
+                   //change userpoints according to rating. give 2 points
+                    Utils.changeUserPoints(GroceryItemActivity.this, incomingItem, (1-incomingItem.getRate()) * 2);
                     incomingItem.setRate(1);
                     handleRating();
                 }
@@ -168,6 +194,8 @@ private ReviewsAdapter adapter;
             public void onClick(View v) {
                 if(incomingItem.getRate() !=2){
                     Utils.changeRate(GroceryItemActivity.this, incomingItem.getId(),2);
+                    //change userpoints according to rating. give 2 points
+                    Utils.changeUserPoints(GroceryItemActivity.this, incomingItem, (2-incomingItem.getRate()) * 2);
                     incomingItem.setRate(2);
                     handleRating();
                 }
@@ -178,6 +206,8 @@ private ReviewsAdapter adapter;
             public void onClick(View v) {
                 if(incomingItem.getRate() !=3){
                     Utils.changeRate(GroceryItemActivity.this, incomingItem.getId(),3);
+                    //change userpoints according to rating. give 2 points
+                    Utils.changeUserPoints(GroceryItemActivity.this, incomingItem, (3-incomingItem.getRate()) * 2);
                     incomingItem.setRate(3);
                     handleRating();
                 }
@@ -208,5 +238,11 @@ private ReviewsAdapter adapter;
 
     }
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(isBound){
+            unbindService(connection);
+        }
+    }
 }

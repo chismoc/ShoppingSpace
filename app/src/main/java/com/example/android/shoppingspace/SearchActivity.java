@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -32,6 +33,8 @@ public class SearchActivity extends AppCompatActivity implements AllCategoriesDi
         ArrayList<GroceryItem> items = Utils.getItemByCategory(this, category);
         if (null != items) {
             adapter.setItems(items);
+            //add point for searched item
+            increaseUserPoint(items);
         }
     }
 
@@ -66,6 +69,8 @@ if(null != intent){
         ArrayList<GroceryItem> items = Utils.getItemByCategory(this, category);
         if(null != items){
             adapter.setItems(items);
+            //add point for searched item
+            increaseUserPoint(items);
         }
     }
 }
@@ -118,6 +123,12 @@ if(null != intent){
             }
         });
     }
+    //increase userpoints when a user search for something
+    private void increaseUserPoint(ArrayList<GroceryItem> items){
+        for(GroceryItem i : items){
+            Utils.changeUserPoints(this, i,1);
+        }
+    }
 
     private void showCategories(final ArrayList<String> categories, int i) {
         switch (i) {
@@ -132,6 +143,8 @@ if(null != intent){
                         ArrayList<GroceryItem> items = Utils.getItemByCategory(SearchActivity.this, categories.get(0));
                         if (null != items) {
                             adapter.setItems(items);
+                            //add point for searched item
+                            increaseUserPoint(items);
                         }
                     }
                 });
@@ -149,6 +162,8 @@ if(null != intent){
                         ArrayList<GroceryItem> items = Utils.getItemByCategory(SearchActivity.this, categories.get(0));
                         if (null != items) {
                             adapter.setItems(items);
+                            //add point for searched item
+                            increaseUserPoint(items);
                         }
                     }
                 });
@@ -158,6 +173,8 @@ if(null != intent){
                         ArrayList<GroceryItem> items = Utils.getItemByCategory(SearchActivity.this, categories.get(1));
                         if (null != items) {
                             adapter.setItems(items);
+                            //add point for searched item
+                            increaseUserPoint(items);
                         }
                     }
                 });
@@ -175,6 +192,8 @@ if(null != intent){
                         ArrayList<GroceryItem> items = Utils.getItemByCategory(SearchActivity.this, categories.get(0));
                         if (null != items) {
                             adapter.setItems(items);
+                            //add point for searched item
+                            increaseUserPoint(items);
                         }
                     }
                 });
@@ -184,6 +203,8 @@ if(null != intent){
                         ArrayList<GroceryItem> items = Utils.getItemByCategory(SearchActivity.this, categories.get(1));
                         if (null != items) {
                             adapter.setItems(items);
+                            //add point for searched item
+                            increaseUserPoint(items);
                         }
                     }
                 });
@@ -193,6 +214,8 @@ if(null != intent){
                         ArrayList<GroceryItem> items = Utils.getItemByCategory(SearchActivity.this, categories.get(2));
                         if (null != items) {
                             adapter.setItems(items);
+                            //add point for searched item
+                            increaseUserPoint(items);
                         }
                     }
                 });
@@ -213,6 +236,8 @@ if(null != intent){
             ArrayList<GroceryItem> items = Utils.searchForItems(this, name);
             if (null != items) {
                 adapter.setItems(items);
+                //add point for searched item
+                increaseUserPoint(items);
             }
         }
     }
@@ -246,7 +271,9 @@ if(null != intent){
                         break;
 
                     case R.id.cart:
-
+                        Intent cartIntent = new Intent(SearchActivity.this, CartActivity.class);
+                        cartIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(cartIntent);
                         break;
                     default:
                         break;

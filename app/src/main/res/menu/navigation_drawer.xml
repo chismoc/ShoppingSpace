@@ -13,8 +13,8 @@
         android:id="@+id/about"
         android:icon="@drawable/ic_about"/>
     <item
-        android:title="Licences"
-        android:id="@+id/licences"
+        android:title="Licenses"
+        android:id="@+id/licenses"
         android:icon="@drawable/ic_licences"/>
     <item
         android:title="Terms"
