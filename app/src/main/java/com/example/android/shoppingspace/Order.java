@@ -11,10 +11,10 @@ public class Order {
     private String email;
     private double totalPrice;
     private String paymentMethod;
-    private boolean success;
+    private boolean successful;
 
     public Order(ArrayList<GroceryItem> items, String address, String zipCode, String phoneNumber,
-                 String email, double totalPrice, String paymentMethod, boolean success) {
+                 String email, double totalPrice, String paymentMethod, boolean successful) {
         this.id = Utils.getOrderId();
         this.items = items;
         this.address = address;
@@ -23,7 +23,7 @@ public class Order {
         this.email = email;
         this.totalPrice = totalPrice;
         this.paymentMethod = paymentMethod;
-        this.success = success;
+        this.successful = successful;
     }
 
     public Order() {
@@ -93,12 +93,12 @@ public class Order {
         this.paymentMethod = paymentMethod;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public boolean isSuccessful() {
+        return successful;
     }
 
     public void setSuccess(boolean success) {
-        this.success = success;
+        this.successful = success;
     }
 
     @Override
@@ -112,7 +112,7 @@ public class Order {
                 ", email='" + email + '\'' +
                 ", totalPrice=" + totalPrice +
                 ", paymentMethod='" + paymentMethod + '\'' +
-                ", success=" + success +
+                ", successful=" + successful +
                 '}';
     }
 }
