@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
         //initialize Views method
         initViews();
 
-        Utils.initSharedPreferences(this);
-
         //set toolbar
         setSupportActionBar(toolbar);
 

@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,7 @@ public class GroceryItem  implements Parcelable {
     private int popularityPoint;
 
     //ArrayList for different review
+    @TypeConverters(ReviewsConverter.class)
     private ArrayList<Review> reviews;
 
     //create constructors to be used by roomDatabase
